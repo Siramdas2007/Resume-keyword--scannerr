@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Analysis Result</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(120deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        .card {
+            background: white;
+            color: black;
+            width: 650px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        /* ✅ Score Bar */
+        .score-container {
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background: #ddd;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 25px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            text-align: center;
+            color: white;
+            line-height: 25px;
+            font-weight: bold;
+            border-radius: 20px;
+            transition: width 0.5s ease-in-out;
+        }
+
+        /* Color based on score */
+        .low { background: #f44336; }
+        .medium { background: #ff9800; }
+        .high { background: #4CAF50; }
+
+        /* Keywords */
+        .tag {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 5px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .matched {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .missing {
+            background: #f44336;
+            color: white;
+        }
+
+        /* Suggestions */
+        ul {
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>📊 Resume Analysis</h2>
+
+    <!-- ✅ SCORE BAR -->
+    <div class="score-container">
+        <h3>ATS Match Score: {{score}}%</h3>
+
+        <div class="progress-bar">
+            <div class="progress-fill
+                {% if score < 40 %}low
+                {% elif score < 70 %}medium
+                {% else %}high
+                {% endif %}"
+                style="width: {{score}}%;">
+                {{score}}%
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ MATCHED -->
+    <h3>✅ Matched Keywords</h3>
+    {% if matched %}
+        {% for word in matched %}
+            <span class="tag matched">{{word}}</span>
+        {% endfor %}
+    {% else %}
+        <p>No matched keywords</p>
+    {% endif %}
+
+    <!-- ❌ MISSING -->
+    <h3>❌ Missing Keywords</h3>
+    {% if missing %}
+        {% for word in missing %}
+            <span class="tag missing">{{word}}</span>
+        {% endfor %}
+    {% else %}
+        <p>No missing keywords 🎉</p>
+    {% endif %}
+
+    <!-- 🤖 AI SUGGESTIONS -->
+    <h3>🤖 AI Suggestions</h3>
+    <ul>
+        {% for s in suggestions %}
+            <li>{{s}}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/"><button>🔄 Scan Again</button></a>
+</div>
+
+</body>
+</html>
