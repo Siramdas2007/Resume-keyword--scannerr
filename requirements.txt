@@ -1,0 +1,8 @@
+streamlit
+Flask
+PyPDF2
+python-docx
+pandas
+scikit-learn
+nltk
+gunicorn
