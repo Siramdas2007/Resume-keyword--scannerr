@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Scanner</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(120deg, #4facfe, #00f2fe);
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .box {
+            background: white;
+            width: 450px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px;
+            width: 100%;
+            background: #4facfe;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #00c6ff;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Resume Keyword Scanner</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="resume" required>
+
+        <textarea name="jobdesc" rows="6" placeholder="Enter job description..." required></textarea>
+
+        <button type="submit">Scan Resume</button>
+    </form>
+</div>
+
+</body>
+</html>
